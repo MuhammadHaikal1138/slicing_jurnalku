@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slicing_jurnalku/Pages/catatan.dart';
 import 'package:slicing_jurnalku/Pages/home.dart';
+import 'package:slicing_jurnalku/Pages/permintaan.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const CatatanSikap(),
+      home: const PermintaanPage(),
     );
   }
 }
