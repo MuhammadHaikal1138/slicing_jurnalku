@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slicing_jurnalku/login.dart';
+import 'package:slicing_jurnalku/jurnal_pembiasaan.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: JurnalPembiasaanPage(),
     );
   }
 }
