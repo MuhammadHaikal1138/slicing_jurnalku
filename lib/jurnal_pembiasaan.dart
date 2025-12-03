@@ -164,172 +164,177 @@ class JurnalPembiasaanPage extends StatelessWidget {
               SizedBox(height: 30),
 
               // BAGIAN B
-              Text(
-                "B. Pekerjaan yang dilakukan",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-
-              SizedBox(height: 10),
-
-              // TABLE BESAR
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(4),
+              // BAGIAN B – dengan ExpansionTile dropdown
+              ExpansionTile(
+                title: Text(
+                  "B. Pekerjaan yang dilakukan",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // HEADER
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        border: Border(bottom: BorderSide(color: Colors.grey)),
-                      ),
-                      child: Row(
-                        children: const [
-                          Expanded(
-                            flex: 4,
-                            child: Text(
-                              "Pekerjaan",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "Tgl",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "Saksi",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-
-                    // ROW DATA KOSONG
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Belum ada pekerjaan yang diinput.",
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ),
-
-                    // FOOTER TAMBAH PEKERJAAN
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12),
-                      decoration: const BoxDecoration(
-                        border: Border(top: BorderSide(color: Colors.grey)),
-                      ),
-                      child: Text(
-                        "+ Tambah Pekerjaan",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w600,
+                    child: Column(
+                      children: [
+                        // HEADER
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            border: Border(
+                              bottom: BorderSide(color: Colors.grey),
+                            ),
+                          ),
+                          child: Row(
+                            children: const [
+                              Expanded(
+                                flex: 4,
+                                child: Text(
+                                  "Pekerjaan",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "Tgl",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "Saksi",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+
+                        // DATA KOSONG
+                        Padding(
+                          padding: EdgeInsets.all(12),
+                          child: Text(
+                            "Belum ada pekerjaan yang diinput.",
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
+                        ),
+
+                        // FOOTER – Tambah pekerjaan
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            border: Border(top: BorderSide(color: Colors.grey)),
+                          ),
+                          child: Text(
+                            "+ Tambah Pekerjaan",
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
 
               SizedBox(height: 30),
               // BAGIAN B
-              Text(
-                "C. Materi yang dipelajari",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-
-              SizedBox(height: 10),
-
-              // TABLE BESAR
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(4),
+              ExpansionTile(
+                title: Text(
+                  "C. Materi yang dipelajari",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // HEADER
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        border: Border(bottom: BorderSide(color: Colors.grey)),
-                      ),
-                      child: Row(
-                        children: const [
-                          Expanded(
-                            flex: 4,
-                            child: Text(
-                              "Materi",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "Sts",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "Tgl",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-
-                    // ROW DATA KOSONG
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        "Belum ada Materi yang diinput.",
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ),
-
-                    // FOOTER TAMBAH PEKERJAAN
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12),
-                      decoration: const BoxDecoration(
-                        border: Border(top: BorderSide(color: Colors.grey)),
-                      ),
-                      child: Text(
-                        "+ Tambah Materi",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w600,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // HEADER
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            border: Border(
+                              bottom: BorderSide(color: Colors.grey),
+                            ),
+                          ),
+                          child: Row(
+                            children: const [
+                              Expanded(
+                                flex: 4,
+                                child: Text(
+                                  "Materi",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "Sts",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "Tgl",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+
+                        // ROW DATA KOSONG
+                        Padding(
+                          padding: EdgeInsets.all(12),
+                          child: Text(
+                            "Belum ada Materi yang diinput.",
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
+                        ),
+
+                        // FOOTER TAMBAH PEKERJAAN
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(12),
+                          decoration: const BoxDecoration(
+                            border: Border(top: BorderSide(color: Colors.grey)),
+                          ),
+                          child: Text(
+                            "+ Tambah Materi",
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 10),
+                ],
               ),
-              SizedBox(height: 10),
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -379,166 +384,196 @@ class JurnalPembiasaanPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "D. Poin",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 15),
-
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Table(
-                      border: TableBorder.symmetric(
-                        inside: BorderSide(color: Colors.grey),
+                  ExpansionTile(
+                    title: Text(
+                      "D. Poin",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      columnWidths: const {
-                        0: FlexColumnWidth(3),
-                        1: FlexColumnWidth(1),
-                        2: FlexColumnWidth(1),
-                        3: FlexColumnWidth(1),
-                        4: FlexColumnWidth(1),
-                      },
-                      children: [
-                        // HEADER
-                        TableRow(
-                          decoration: BoxDecoration(color: Colors.grey[300]),
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "Kategori Poin",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "M1",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "M2",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "M3",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "M4",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        // ROW 1
-                        TableRow(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "(5) mengerjakan project/adanya update progress belajar",
-                              ),
-                            ),
-                            ...List.generate(
-                              4,
-                              (_) => const Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Text("0", textAlign: TextAlign.center),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        // ROW 2
-                        TableRow(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text(
-                                "(1–5) poin dari pertanyaan atau laporan pengetahuan materi",
-                              ),
-                            ),
-                            ...List.generate(
-                              4,
-                              (_) => const Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Text("0", textAlign: TextAlign.center),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        // ROW 3 — Jumlah poin minggu ini
-                        TableRow(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text("Jumlah poin minggu ini"),
-                            ),
-                            ...List.generate(
-                              4,
-                              (_) => const Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Text("0", textAlign: TextAlign.center),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        // ROW 4 — Jumlah poin ceklist pembiasaan
-                        TableRow(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text("Jumlah poin ceklist pembiasaan"),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text("0", textAlign: TextAlign.center),
-                            ),
-                            const SizedBox(),
-                            const SizedBox(),
-                            const SizedBox(),
-                          ],
-                        ),
-
-                        // ROW 5 — Jumlah keseluruhan
-                        TableRow(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text("Jumlah keseluruhan poin"),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8),
-                              child: Text("0", textAlign: TextAlign.center),
-                            ),
-                            const SizedBox(),
-                            const SizedBox(),
-                            const SizedBox(),
-                          ],
-                        ),
-                      ],
                     ),
+                    children: [
+                      SizedBox(height: 10),
+
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Table(
+                          border: TableBorder.symmetric(
+                            inside: BorderSide(color: Colors.grey),
+                          ),
+                          columnWidths: const {
+                            0: FlexColumnWidth(3),
+                            1: FlexColumnWidth(1),
+                            2: FlexColumnWidth(1),
+                            3: FlexColumnWidth(1),
+                            4: FlexColumnWidth(1),
+                          },
+                          children: [
+                            // HEADER
+                            TableRow(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                              ),
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "Kategori Poin",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "M1",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "M2",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "M3",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "M4",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            // ROW 1
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "(5) mengerjakan project/adanya update progress belajar",
+                                  ),
+                                ),
+                                ...List.generate(
+                                  4,
+                                  (_) => const Padding(
+                                    padding: EdgeInsets.all(8),
+                                    child: Text(
+                                      "0",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            // ROW 2
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text(
+                                    "(1–5) poin dari pertanyaan atau laporan pengetahuan materi",
+                                  ),
+                                ),
+                                ...List.generate(
+                                  4,
+                                  (_) => const Padding(
+                                    padding: EdgeInsets.all(8),
+                                    child: Text(
+                                      "0",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            // ROW 3 — Jumlah poin minggu ini
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text("Jumlah poin minggu ini"),
+                                ),
+                                ...List.generate(
+                                  4,
+                                  (_) => const Padding(
+                                    padding: EdgeInsets.all(8),
+                                    child: Text(
+                                      "0",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            // ROW 4 — Jumlah poin ceklist pembiasaan
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text("Jumlah poin ceklist pembiasaan"),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text("0", textAlign: TextAlign.center),
+                                ),
+                                const SizedBox(),
+                                const SizedBox(),
+                                const SizedBox(),
+                              ],
+                            ),
+
+                            // ROW 5 — Total keseluruhan
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text("Jumlah keseluruhan poin"),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Text("0", textAlign: TextAlign.center),
+                                ),
+                                const SizedBox(),
+                                const SizedBox(),
+                                const SizedBox(),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(height: 20),
+                    ],
                   ),
                 ],
               ),
