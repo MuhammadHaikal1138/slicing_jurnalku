@@ -55,7 +55,7 @@ class PermintaanPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Permintaan Sanksi',
+                  'Permintaan Saksi',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 15),
@@ -76,7 +76,7 @@ class PermintaanPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
+                  color: Colors.grey.withOpacity(0.3),  
                   spreadRadius: 2,
                   blurRadius: 5,
                   offset: Offset(0, 3),
@@ -139,7 +139,7 @@ class PermintaanPage extends StatelessWidget {
                             children: [
                               SizedBox(width: 20),
                               Expanded(
-                                flex: 1,
+                                flex: 3,
                                 child: Text(
                                   "Pengirim",
                                   style: TextStyle(
@@ -148,7 +148,7 @@ class PermintaanPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 90),
+                              SizedBox(width: 50),
                               Expanded(
                                 flex: 2,
                                 child: Text(
@@ -159,9 +159,9 @@ class PermintaanPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 90),
+                              SizedBox(width: 50),
                               Expanded(
-                                flex: 3,
+                                flex: 4,
                                 child: Text(
                                   "Konfirmasi",
                                   style: TextStyle(
@@ -173,7 +173,6 @@ class PermintaanPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        // no data
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 40),
                           child: Column(
