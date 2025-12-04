@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
 
 class PermintaanSaksi extends StatelessWidget {
-  const PermintaanSaksi({super.key});
+  PermintaanSaksi({super.key});
 
   @override
+  List<Map<String, String>> permintaanSaksi = [
+    {
+      'pengirim': 'Muhamad Rizki',
+      'tanggal': '03-12-2020',
+      'konfirmasi': 'Sudah Lengkap',
+    },
+    {
+      'pengirim': 'Siti Aminah',
+      'tanggal': '05-12-2020',
+      'konfirmasi': 'Belum Lengkap',
+    },
+    {
+      'pengirim': 'Budi Santoso',
+      'tanggal': '07-12-2020',
+      'konfirmasi': 'Sudah Lengkap',
+    },
+
+    {
+      'pengirim': 'Susanti Wijaya',
+      'tanggal': '07-12-2020',
+      'konfirmasi': 'Sudah Lengkap',
+    },
+  ];
+
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: const Padding(
@@ -107,62 +132,55 @@ class PermintaanSaksi extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              children: [
-                ExpansionTile(
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: permintaanSaksi.length,
+                separatorBuilder: (context, index) => const Divider(height: 1),
+                itemBuilder: (context, index) => ExpansionTile(
                   tilePadding: const EdgeInsets.symmetric(horizontal: 16),
                   childrenPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 8,
                   ),
-                  title: const Text(
-                    "Kategori: -",
+                  title: Text(
+                    "${index + 1}. Pengirim: ${permintaanSaksi[index]['pengirim']}",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: const Text("Status: -"),
                   children: [
-                    _buildDetailRow("Pengirim:", "-"),
-                    _buildDetailRow("Tanggal:", "-"),
-                    _buildDetailRow("Konfirmasi:", "-"),
-                    const SizedBox(height: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Tanggal",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "${permintaanSaksi[index]['tanggal']}",
+                          style: TextStyle(fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(height: 10),
+                        Divider(color: Colors.black, thickness: 2),
+                        SizedBox(height: 10),
+                        Text(
+                          "Konfirmasi",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "${permintaanSaksi[index]['konfirmasi']}",
+                          style: TextStyle(fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        child: Icon(
-                          Icons.group_outlined,
-                          size: 50,
-                          color: Colors.grey.shade500,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "Belum ada permintaan",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Belum ada yang mengirim permintaan saksi kepada Anda",
-                        style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ],
@@ -213,25 +231,6 @@ Widget _buildSummaryCard(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
           child: Icon(icon, color: Colors.white, size: 28),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildDetailRow(String label, String value) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 6),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-        Flexible(
-          child: Text(
-            value,
-            textAlign: TextAlign.end,
-            style: const TextStyle(color: Colors.black87),
-          ),
         ),
       ],
     ),
