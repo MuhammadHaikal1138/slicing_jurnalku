@@ -96,7 +96,6 @@ class HomePage extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       child: Column(
                         children: [
                           Row(
@@ -134,9 +133,7 @@ class HomePage extends StatelessWidget {
                               ),
                             ],
                           ),
-
                           SizedBox(height: 12),
-
                           Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 16,
