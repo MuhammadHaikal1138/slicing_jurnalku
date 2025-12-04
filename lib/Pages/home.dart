@@ -224,7 +224,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Mutakimah Mutakimah",
+                          "Rizal Asik",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
