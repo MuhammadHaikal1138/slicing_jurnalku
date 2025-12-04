@@ -7,24 +7,28 @@ class PermintaanSaksi extends StatelessWidget {
   List<Map<String, String>> permintaanSaksi = [
     {
       'pengirim': 'Muhamad Rizki',
+      'Keterangan': 'Saya Melaksanakan piket wc',
       'tanggal': '03-12-2020',
-      'konfirmasi': 'Sudah Lengkap',
+      'konfirmasi': 'sudah mengerjakan',
     },
     {
       'pengirim': 'Siti Aminah',
+      'Keterangan': 'saya membersihkan kelas',
       'tanggal': '05-12-2020',
-      'konfirmasi': 'Belum Lengkap',
+      'konfirmasi': 'Belum mngerjakan',
     },
     {
       'pengirim': 'Budi Santoso',
+      'Keterangan': 'saya melaksanan sholat dhuha',
       'tanggal': '07-12-2020',
-      'konfirmasi': 'Sudah Lengkap',
+      'konfirmasi': 'sudah mengerjakan',
     },
 
     {
       'pengirim': 'Susanti Wijaya',
+      'Keterangan': 'saya sudah sudah melaksanan tugas',
       'tanggal': '07-12-2020',
-      'konfirmasi': 'Sudah Lengkap',
+      'konfirmasi': 'Belum melaksanankan',
     },
   ];
 
@@ -149,9 +153,27 @@ class PermintaanSaksi extends StatelessWidget {
                     horizontal: 16,
                     vertical: 8,
                   ),
-                  title: Text(
-                    "${index + 1}. Pengirim: ${permintaanSaksi[index]['pengirim']}",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  leading: Text(
+                    "${index + 1}",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Pengirim: ${permintaanSaksi[index]['pengirim']}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        "Keterangan: ${permintaanSaksi[index]['Keterangan']}",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                   children: [
                     Column(
@@ -175,6 +197,33 @@ class PermintaanSaksi extends StatelessWidget {
                         Text(
                           "${permintaanSaksi[index]['konfirmasi']}",
                           style: TextStyle(fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey,
+                              ),
+                              child: Text(
+                                "Tidak",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                              ),
+                              child: Text(
+                                "Ya",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

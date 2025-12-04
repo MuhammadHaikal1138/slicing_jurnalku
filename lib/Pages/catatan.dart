@@ -118,56 +118,18 @@ class CatatanSikap extends StatelessWidget {
                         vertical: 8,
                       ),
                       title: const Text(
-                        "Kategori: -",
+                        "Kategori: Percobaan",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: const Text("Status: -"),
+                      // subtitle: const Text("Status: Percobaan"),
                       children: [
-                        _buildDetailRow("Catatan:", "-"),
-                        _buildDetailRow("Dilaporkan:", "-"),
-                        _buildDetailRow("Update Terakhir:", "-"),
+                        _buildDetailRow("Status:", "Percobaan"),
+                        _buildDetailRow("Catatan:", "Percobaan"),
+                        _buildDetailRow("Dilaporkan:", "Percobaan"),
+                        _buildDetailRow("Update Terakhir:", "Percobaan"),
+                        _buildDetailRow("aksi:", "Percobaan"),
                         const SizedBox(height: 10),
                       ],
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.grey.shade400,
-                                width: 2,
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.check,
-                              size: 36,
-                              color: Colors.grey.shade500,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          const Text(
-                            "Tidak ada catatan",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "Belum ada catatan sikap yang dilaporkan",
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 13,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
                     ),
                   ],
                 ),
