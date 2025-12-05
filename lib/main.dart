@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:slicing_jurnalku/Pages/home.dart';
-import 'package:slicing_jurnalku/Pages/permintaan.dart';
-import 'package:slicing_jurnalku/Pages/profile.dart';
 
 void main() {
   runApp(const MyApp());
