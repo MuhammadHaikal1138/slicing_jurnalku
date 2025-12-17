@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:slicing_jurnalku/Pages/home.dart';
-import 'package:slicing_jurnalku/dashboard.dart';
 import 'package:slicing_jurnalku/login.dart';
 
 void main() {
