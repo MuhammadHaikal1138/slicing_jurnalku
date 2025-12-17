@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:slicing_jurnalku/login.dart';
 
 class SettingAccountPage extends StatefulWidget {
   const SettingAccountPage({super.key});
@@ -9,7 +10,6 @@ class SettingAccountPage extends StatefulWidget {
 }
 
 class _SettingAccountPageState extends State<SettingAccountPage> {
-
   bool seeOldPassword = true;
   bool seeNewPassword = true;
 
@@ -18,7 +18,19 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[100],
-        leading: Icon(Icons.home_outlined, size: 20, color: Colors.grey[600]),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Login()),
+            );
+          },
+          child: Padding(
+            padding: EdgeInsets.all(0),
+            child: Icon(Icons.home_outlined, size: 20, color: Colors.grey[600]),
+          ),
+        ),
         actions: [
           Container(
             margin: EdgeInsets.all(10),
@@ -146,7 +158,7 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[900],
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -154,10 +166,7 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       controller: TextEditingController(
                         text: "Muhammad Haikal",
                       ),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                       enabled: false,
                       decoration: InputDecoration(
                         filled: true,
@@ -174,18 +183,13 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[900],
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
                     TextField(
-                      controller: TextEditingController(
-                        text: "12309863",
-                      ),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
+                      controller: TextEditingController(text: "12309863"),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                       enabled: false,
                       decoration: InputDecoration(
                         filled: true,
@@ -202,18 +206,13 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[900],
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
                     TextField(
-                      controller: TextEditingController(
-                        text: "PPLG XII-3",
-                      ),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
+                      controller: TextEditingController(text: "PPLG XII-3"),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                       enabled: false,
                       decoration: InputDecoration(
                         filled: true,
@@ -230,18 +229,13 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[900],
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
                     TextField(
-                      controller: TextEditingController(
-                        text: "Ciawi 2",
-                      ),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
+                      controller: TextEditingController(text: "Ciawi 2"),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                       enabled: false,
                       decoration: InputDecoration(
                         filled: true,
@@ -255,7 +249,7 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 15),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
@@ -279,7 +273,7 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[900],
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -291,16 +285,25 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                         filled: true,
                         fillColor: Colors.grey[100],
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey[200]! ),
+                          borderSide: BorderSide(color: Colors.grey[200]!),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue[600]!, width: 2),
+                          borderSide: BorderSide(
+                            color: Colors.blue[600]!,
+                            width: 2,
+                          ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         suffixIcon: IconButton(
-                          icon: Icon(seeOldPassword? Icons.visibility_off : Icons.visibility, size: 20, color: Colors.grey,),
-                          onPressed: (){
+                          icon: Icon(
+                            seeOldPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            size: 20,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
                             setState(() {
                               seeOldPassword = !seeOldPassword;
                             });
@@ -312,16 +315,16 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                       "Masukkan kata sandi lama anda",
                       style: GoogleFonts.poppins(
                         fontSize: 14,
-                        color: Colors.grey[600]
+                        color: Colors.grey[600],
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 20),
                     Text(
                       "Kata Sandi Baru",
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[900],
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -337,12 +340,21 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue[600]!, width: 2),
+                          borderSide: BorderSide(
+                            color: Colors.blue[600]!,
+                            width: 2,
+                          ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         suffixIcon: IconButton(
-                          icon: Icon(seeNewPassword? Icons.visibility_off : Icons.visibility, size: 20, color: Colors.grey,),
-                          onPressed: (){
+                          icon: Icon(
+                            seeNewPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            size: 20,
+                            color: Colors.grey,
+                          ),
+                          onPressed: () {
                             setState(() {
                               seeNewPassword = !seeNewPassword;
                             });
@@ -350,29 +362,27 @@ class _SettingAccountPageState extends State<SettingAccountPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 26,),
+                    SizedBox(height: 26),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(20),
                         backgroundColor: Colors.indigo,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)
-                        )
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
-                      onPressed: (){
-
-                      }, 
+                      onPressed: () {},
                       child: Text(
                         "Simpan Perubahan",
                         style: GoogleFonts.poppins(
                           color: Colors.white,
-                          fontWeight: FontWeight.w600
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

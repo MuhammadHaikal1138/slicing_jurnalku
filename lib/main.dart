@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slicing_jurnalku/Pages/home.dart';
+import 'package:slicing_jurnalku/dashboard.dart';
+import 'package:slicing_jurnalku/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Login(),
     );
   }
 }

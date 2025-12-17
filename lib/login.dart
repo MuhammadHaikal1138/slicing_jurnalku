@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:slicing_jurnalku/dashboard.dart';
+import 'package:slicing_jurnalku/setting_account.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
@@ -55,7 +57,6 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: ListView(
         children: [
-          
           // Banner
           Image.asset(
             'assets/images/banner.jpg',
@@ -152,7 +153,14 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Dashboard(),
+                        ),
+                      );
+                    },
                     child: Text(
                       "Masuk",
                       style: GoogleFonts.poppins(
@@ -166,9 +174,17 @@ class _LoginState extends State<Login> {
                 const SizedBox(height: 12),
 
                 // Lupa password
-                Center(
-                  child: TextButton(
-                    onPressed: () {},
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SettingAccountPage(),
+                      ),
+                    );
+                  },
+                  child: Center(
                     child: Text(
                       "Lupa password? Hubungi guru laboran.",
                       style: GoogleFonts.poppins(color: Colors.grey),

@@ -1,5 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:slicing_jurnalku/Pages/catatan.dart';
+import 'package:slicing_jurnalku/Pages/permintaansaksi.dart';
+import 'package:slicing_jurnalku/Pages/profile.dart';
+import 'package:slicing_jurnalku/components/card_project_list.dart';
+import 'package:slicing_jurnalku/components/user_guide_card.dart';
+import 'package:slicing_jurnalku/jurnal_pembiasaan.dart';
+import 'package:slicing_jurnalku/login.dart';
+import 'package:slicing_jurnalku/progress_student.dart';
+import 'package:slicing_jurnalku/setting_account.dart';
+import 'package:slicing_jurnalku/user_guide.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -9,41 +21,61 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsetsGeometry.all(0),
-          child: Icon(Icons.home_outlined, size: 20, color: Colors.grey[600],),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Login()),
+            );
+          },
+          child: Padding(
+            padding: EdgeInsets.all(0),
+            child: Icon(Icons.home_outlined, size: 20, color: Colors.grey[600]),
+          ),
         ),
         actions: [
-          Container(
-            margin: EdgeInsets.all(10),
-            child: Row(
-              children: [Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Muhammad Haikal",
-                      // textAlign: TextAlign.end,
-                      style: GoogleFonts.poppins(
-                        fontSize: 10
-                      ),
-                    ),
-                    Text(
-                      "PPLG XII-3",
-                      // textAlign: TextAlign.end,
-                      style: GoogleFonts.poppins(
-                        fontSize: 8,
-                        color: Colors.grey[600]
-                      ),
-                    ),
-                  ],
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingAccountPage(),
                 ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Muhammad Haikal",
+                        style: GoogleFonts.poppins(fontSize: 10),
+                      ),
+                      Text(
+                        "PPLG XII-3",
+                        style: GoogleFonts.poppins(
+                          fontSize: 8,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 12),
+                  ClipOval(
+                    child: Image.asset(
+                      "assets/images/foto_profile.jpg",
+                      height: 32,
+                      width: 32,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(width: 12,),
-              ClipOval(
-                child: Image.asset("assets/images/foto_profile.jpg", height: 32, width: 32, fit: BoxFit.cover,)),
-            ],
             ),
           ),
         ],
@@ -55,9 +87,7 @@ class Dashboard extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               width: double.infinity,
               height: 200,
-              decoration: BoxDecoration(
-                color: Colors.blue[900]
-              ),
+              decoration: BoxDecoration(color: Colors.blue[900]),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -67,10 +97,10 @@ class Dashboard extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 18,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(height: 8),
                     Text(
                       "Solusi cerdas untuk memantau perkembangan kompetensi siswa secara efektif",
                       style: GoogleFonts.poppins(
@@ -92,7 +122,7 @@ class Dashboard extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 36, vertical: 46),
                     decoration: BoxDecoration(
                       color: Colors.blue[900],
-                      borderRadius: BorderRadius.circular(15)
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,41 +132,49 @@ class Dashboard extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.white
+                            color: Colors.white,
                           ),
                         ),
-                        SizedBox(height: 12,),
+                        SizedBox(height: 12),
                         Text(
                           "Jurnalku adalah aplikasi cerdas yang membantu guru dan siswa dalam memantau dan mengelola kompetensi keahlian siswa secara efektif, terstruktur, dan real-time. Dengan fitur lengkap, proses pemantauan menjadi lebih mudah dan transparan.",
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: Colors.white
+                            color: Colors.white,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.all(36),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
-                      borderRadius: BorderRadius.circular(15)
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
                       child: Column(
                         children: [
-                          Icon(Icons.castle_outlined, size: 36, color: Colors.indigo[900],),
-                          SizedBox(height: 20,),
+                          Icon(
+                            Icons.castle_outlined,
+                            size: 36,
+                            color: Colors.indigo[900],
+                          ),
+                          SizedBox(height: 20),
                           Text(
                             "Dirancang Khusus",
                             style: GoogleFonts.poppins(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 20),
                           Text(
                             "Memenuhi kebutuhan spesifik sekolah kami dengan fokus pada kemajuan siswa.",
                             style: GoogleFonts.poppins(
@@ -144,32 +182,40 @@ class Dashboard extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                             textAlign: TextAlign.center,
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.all(36),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
-                      borderRadius: BorderRadius.circular(15)
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
                       child: Column(
                         children: [
-                          Icon(Icons.people, size: 36, color: Colors.indigo[900],),
-                          SizedBox(height: 20,),
+                          Icon(
+                            Icons.people,
+                            size: 36,
+                            color: Colors.indigo[900],
+                          ),
+                          SizedBox(height: 20),
                           Text(
                             "Efektif",
                             style: GoogleFonts.poppins(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 20),
                           Text(
                             "Memudahkan siswa dan guru melihat perkembangan secara real-time.",
                             style: GoogleFonts.poppins(
@@ -177,32 +223,40 @@ class Dashboard extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                             textAlign: TextAlign.center,
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.all(36),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
-                      borderRadius: BorderRadius.circular(15)
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
                       child: Column(
                         children: [
-                          Icon(Icons.school_outlined, size: 36, color: Colors.indigo[900],),
-                          SizedBox(height: 20,),
+                          Icon(
+                            Icons.school_outlined,
+                            size: 36,
+                            color: Colors.indigo[900],
+                          ),
+                          SizedBox(height: 20),
                           Text(
                             "Terintegrasi",
                             style: GoogleFonts.poppins(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 20),
                           Text(
                             "Pengajuan kompetensi siswa, validasi dan laporan perkembangan yang transparan.",
                             style: GoogleFonts.poppins(
@@ -210,85 +264,116 @@ class Dashboard extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                             textAlign: TextAlign.center,
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 32,),
+                  SizedBox(height: 32),
                   Text(
                     "Menu Aplikasi",
                     style: GoogleFonts.poppins(
                       color: Colors.grey[700],
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Container(
                     padding: EdgeInsets.all(20),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfilePage(),
                               ),
-                              child: Icon(Icons.person_outline, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Profil",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                // SizedBox(height: 5,),
-                                Text(
-                                  "Lihat dan kelola profilmu disini.",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+                                child: Icon(
+                                  Icons.person_outline,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
                               ),
-                              child: Icon(Icons.backpack, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            SizedBox(
-                              width: 200,
-                              child: Column(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Profil",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Lihat dan kelola profilmu disini.",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfilePage(),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.book_outlined,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -298,40 +383,55 @@ class Dashboard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  // SizedBox(height: 5,),
                                   Text(
-                                    "Lihat dan kelola portofolio kompetensimu di sini.",
+                                    "Lihat dan kelola Portofolio kompotensi disini.",
                                     style: GoogleFonts.poppins(
                                       fontSize: 12,
                                       color: Colors.grey[600],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
                               ),
-                              child: Icon(Icons.stream_sharp, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            SizedBox(
-                              width: 200,
-                              child: Column(
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProfilePage(),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.verified_rounded,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -341,219 +441,301 @@ class Dashboard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  // SizedBox(height: 5,),
                                   Text(
-                                    "Lihat dan unduh sertifikat kompetensimu di sini.",
+                                    "Lihat dan unduh sertifikat kompetensi disini.",
                                     style: GoogleFonts.poppins(
                                       fontSize: 12,
                                       color: Colors.grey[600],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.all(20),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const JurnalPembiasaanPage(),
                               ),
-                              child: Icon(Icons.menu_book_rounded, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            SizedBox(
-                              width: 200,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Jurnal Pembiasaan",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  // SizedBox(height: 5,),
-                                  Text(
-                                    "Catat dan pantau pembiasaan harianmu.",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
-                                    ),
-                                  )
-                                ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.menu_book_rounded,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
+                              SizedBox(width: 10),
+                              SizedBox(
+                                width: 200,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Jurnal Pembiasaan",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Catat dan pantau pembiasaan harianmu.",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PermintaanSaksi(),
                               ),
-                              child: Icon(Icons.people_outline_rounded, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            SizedBox(
-                              width: 200,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Permintaan Saksi",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  // SizedBox(height: 5,),
-                                  Text(
-                                    "Lihat teman yang mengajukan permintaan saksi.",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
-                                    ),
-                                  )
-                                ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.people_outline_rounded,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
+                              SizedBox(width: 10),
+                              SizedBox(
+                                width: 200,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Permintaan Saksi",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Lihat teman yang mengajukan permintaan saksi.",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProgressStudentPage(),
                               ),
-                              child: Icon(Icons.bar_chart_rounded, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            SizedBox(
-                              width: 200,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Progress",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  // SizedBox(height: 5,),
-                                  Text(
-                                    "Lihat kemajuan kompetensi dan pencapaian belajarmu.",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
-                                    ),
-                                  )
-                                ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.bar_chart_rounded,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
+                              SizedBox(width: 10),
+                              SizedBox(
+                                width: 200,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Progress Belajar",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Lihat kemajuan kompetensi dan pencapaian belajarmu.",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(20)
+
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UserGuidePage(),
                               ),
-                              child: Icon(Icons.warning_amber_rounded, size: 20, color: Colors.blue[600],),
-                            ),
-                            SizedBox(width: 10,),
-                            SizedBox(
-                              width: 200,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Catatan sikap",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  // SizedBox(height: 5,),
-                                  Text(
-                                    "Lihat catatan sikap dan perilaku dari guru.",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
-                                    ),
-                                  )
-                                ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Icon(
+                                  Icons.warning_amber_rounded,
+                                  size: 20,
+                                  color: Colors.blue[600],
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey[400],)
-                          ],
+                              SizedBox(width: 10),
+                              SizedBox(
+                                width: 200,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Catatan Sikap",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Lihat catatan sikap dan perilaku dari guru.",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 20,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Text(
                     "STATISTIK KOMPETENSI",
                     style: GoogleFonts.poppins(
                       color: Colors.grey[700],
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
@@ -579,15 +761,19 @@ class Dashboard extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.circle_rounded, size: 12, color: Colors.green,),
-                                SizedBox(width: 5,),
+                                Icon(
+                                  Icons.circle_rounded,
+                                  size: 12,
+                                  color: Colors.green,
+                                ),
+                                SizedBox(width: 5),
                                 Text(
                                   "Selesai",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: Colors.green,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
@@ -597,18 +783,26 @@ class Dashboard extends StatelessWidget {
                           width: 30,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(20)
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Icon(Icons.check_circle_outline, size: 20, color: Colors.green,),
-                        )
+                          child: Icon(
+                            Icons.check_circle_outline,
+                            size: 20,
+                            color: Colors.green,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
@@ -634,15 +828,19 @@ class Dashboard extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.circle_rounded, size: 12, color: Colors.amber,),
-                                SizedBox(width: 5,),
+                                Icon(
+                                  Icons.circle_rounded,
+                                  size: 12,
+                                  color: Colors.amber,
+                                ),
+                                SizedBox(width: 5),
                                 Text(
                                   "Pending",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: Colors.amber,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
@@ -652,18 +850,26 @@ class Dashboard extends StatelessWidget {
                           width: 30,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(20)
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Icon(Icons.watch_later_outlined, size: 20, color: Colors.amber,),
-                        )
+                          child: Icon(
+                            Icons.watch_later_outlined,
+                            size: 20,
+                            color: Colors.amber,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
@@ -689,15 +895,19 @@ class Dashboard extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.circle_rounded, size: 12, color: Colors.blue[700],),
-                                SizedBox(width: 5,),
+                                Icon(
+                                  Icons.circle_rounded,
+                                  size: 12,
+                                  color: Colors.blue[700],
+                                ),
+                                SizedBox(width: 5),
                                 Text(
                                   "Hari Ini",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: Colors.blue[700],
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
@@ -707,18 +917,26 @@ class Dashboard extends StatelessWidget {
                           width: 30,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(20)
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Icon(Icons.calendar_today_outlined, size: 20, color: Colors.blue[700],),
-                        )
+                          child: Icon(
+                            Icons.calendar_today_outlined,
+                            size: 20,
+                            color: Colors.blue[700],
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
@@ -744,15 +962,19 @@ class Dashboard extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.circle_rounded, size: 12, color: Colors.indigo,),
-                                SizedBox(width: 5,),
+                                Icon(
+                                  Icons.circle_rounded,
+                                  size: 12,
+                                  color: Colors.indigo,
+                                ),
+                                SizedBox(width: 5),
                                 Text(
                                   "Revisi",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: Colors.indigo,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
@@ -762,19 +984,27 @@ class Dashboard extends StatelessWidget {
                           width: 30,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(20)
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Icon(Icons.recycling_rounded, size: 20, color: Colors.indigo,),
-                        )
+                          child: Icon(
+                            Icons.recycling_rounded,
+                            size: 20,
+                            color: Colors.indigo,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 50,),
+                  SizedBox(height: 50),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 26),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Column(
@@ -787,15 +1017,19 @@ class Dashboard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               child: Row(
                                 children: [
-                                  Icon(Icons.circle, size: 12, color: Colors.blue,),
-                                  SizedBox(width: 5,),
+                                  Icon(
+                                    Icons.circle,
+                                    size: 12,
+                                    color: Colors.blue,
+                                  ),
+                                  SizedBox(width: 5),
                                   Text("Selesai"),
                                 ],
                               ),
@@ -803,15 +1037,19 @@ class Dashboard extends StatelessWidget {
                             Text("2"),
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               child: Row(
                                 children: [
-                                  Icon(Icons.circle, size: 12, color: Colors.blue[700],),
-                                  SizedBox(width: 5,),
+                                  Icon(
+                                    Icons.circle,
+                                    size: 12,
+                                    color: Colors.blue[700],
+                                  ),
+                                  SizedBox(width: 5),
                                   Text("Pending"),
                                 ],
                               ),
@@ -819,15 +1057,19 @@ class Dashboard extends StatelessWidget {
                             Text("0"),
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               child: Row(
                                 children: [
-                                  Icon(Icons.circle, size: 12, color: Colors.blue[400],),
-                                  SizedBox(width: 5,),
+                                  Icon(
+                                    Icons.circle,
+                                    size: 12,
+                                    color: Colors.blue[400],
+                                  ),
+                                  SizedBox(width: 5),
                                   Text("Belum Selesai"),
                                 ],
                               ),
@@ -835,15 +1077,19 @@ class Dashboard extends StatelessWidget {
                             Text("0"),
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               child: Row(
                                 children: [
-                                  Icon(Icons.circle, size: 12, color: Colors.blue[900],),
-                                  SizedBox(width: 5,),
+                                  Icon(
+                                    Icons.circle,
+                                    size: 12,
+                                    color: Colors.blue[900],
+                                  ),
+                                  SizedBox(width: 5),
                                   Text("Hari ini"),
                                 ],
                               ),
@@ -854,12 +1100,16 @@ class Dashboard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 26),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!, width: 1, style: BorderStyle.solid),
+                      border: Border.all(
+                        color: Colors.grey[400]!,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Column(
@@ -870,10 +1120,10 @@ class Dashboard extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             color: Colors.blue[700],
                             fontSize: 14,
-                            fontWeight: FontWeight.w600
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -881,14 +1131,14 @@ class Dashboard extends StatelessWidget {
                               "Installasi Postman",
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
-                                fontWeight: FontWeight.w600
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             Container(
                               padding: EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 color: Colors.green[100],
-                                borderRadius: BorderRadius.circular(5)
+                                borderRadius: BorderRadius.circular(5),
                               ),
                               child: Text(
                                 "Approved",
@@ -900,9 +1150,9 @@ class Dashboard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -912,7 +1162,7 @@ class Dashboard extends StatelessWidget {
                                 "Implementasi Penggunaan Postman",
                                 style: GoogleFonts.poppins(
                                   fontSize: 12,
-                                  fontWeight: FontWeight.w600
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -920,7 +1170,7 @@ class Dashboard extends StatelessWidget {
                               padding: EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 color: Colors.green[100],
-                                borderRadius: BorderRadius.circular(5)
+                                borderRadius: BorderRadius.circular(5),
                               ),
                               child: Text(
                                 "Approved",
@@ -932,9 +1182,9 @@ class Dashboard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
-                        Divider(color: Colors.grey[300],),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 10),
+                        Divider(color: Colors.grey[300]),
+                        SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -945,7 +1195,11 @@ class Dashboard extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Icon(Icons.arrow_forward, color: Colors.black, size: 16, )
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.black,
+                              size: 16,
+                            ),
                           ],
                         ),
                       ],
@@ -972,24 +1226,19 @@ class Dashboard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 30),
             Container(
               width: double.infinity,
               height: 40,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-              ),
+              decoration: BoxDecoration(color: Colors.grey[300]),
               child: Center(
                 child: Text(
                   "© GEN-28 PPLG SMK Wikrama Bogor.All Rights Reserved.",
-                  style: GoogleFonts.poppins(
-                    color: Colors.blue,
-                    fontSize: 12,
-                  ),
+                  style: GoogleFonts.poppins(color: Colors.blue, fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
