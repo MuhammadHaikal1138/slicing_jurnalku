@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:slicing_jurnalku/login.dart';
 import 'package:slicing_jurnalku/jurnal_pembiasaan.dart';
+import 'package:slicing_jurnalku/login.dart';
+
 
 void main() {
   runApp(const MyApp());
