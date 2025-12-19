@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:slicing_jurnalku/model/witness.dart';
+import 'package:slicing_jurnalku/services/witness_services.dart';
 
 class PermintaanSaksi extends StatelessWidget {
   PermintaanSaksi({super.key});
+  final WitnessService _service = WitnessService();
 
   @override
-  List<Map<String, String>> permintaanSaksi = [
-    {
-      'pengirim': 'Muhamad Rizki',
-      'Keterangan': 'Saya Melaksanakan piket wc',
-      'tanggal': '03-12-2020',
-      'konfirmasi': 'sudah mengerjakan',
-    },
-    {
-      'pengirim': 'Siti Aminah',
-      'Keterangan': 'saya membersihkan kelas',
-      'tanggal': '05-12-2020',
-      'konfirmasi': 'Belum mngerjakan',
-    },
-    {
-      'pengirim': 'Budi Santoso',
-      'Keterangan': 'saya melaksanan sholat dhuha',
-      'tanggal': '07-12-2020',
-      'konfirmasi': 'sudah mengerjakan',
-    },
-
-    {
-      'pengirim': 'Susanti Wijaya',
-      'Keterangan': 'saya sudah sudah melaksanan tugas',
-      'tanggal': '07-12-2020',
-      'konfirmasi': 'Belum melaksanankan',
-    },
-  ];
-
+  // List<Map<String, String>> permintaanSaksi = [
+  //   {
+  //     'pengirim': 'Muhamad Rizki',
+  //     'Keterangan': 'Saya Melaksanakan piket wc',
+  //     'tanggal': '03-12-2020',
+  //     'konfirmasi': 'sudah mengerjakan',
+  //   },
+  //   {
+  //     'pengirim': 'Siti Aminah',
+  //     'Keterangan': 'saya membersihkan kelas',
+  //     'tanggal': '05-12-2020',
+  //     'konfirmasi': 'Belum mngerjakan',
+  //   },
+  //   {
+  //     'pengirim': 'Budi Santoso',
+  //     'Keterangan': 'saya melaksanan sholat dhuha',
+  //     'tanggal': '07-12-2020',
+  //     'konfirmasi': 'sudah mengerjakan',
+  //   },
+  //   {
+  //     'pengirim': 'Susanti Wijaya',
+  //     'Keterangan': 'saya sudah sudah melaksanan tugas',
+  //     'tanggal': '07-12-2020',
+  //     'konfirmasi': 'Belum melaksanankan',
+  //   },
+  // ];
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -142,93 +143,48 @@ class PermintaanSaksi extends StatelessWidget {
                 border: Border.all(color: Colors.grey.shade300),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: ListView.separated(
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                itemCount: permintaanSaksi.length,
-                separatorBuilder: (context, index) => const Divider(height: 1),
-                itemBuilder: (context, index) => ExpansionTile(
-                  tilePadding: const EdgeInsets.symmetric(horizontal: 16),
-                  childrenPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  leading: Text(
-                    "${index + 1}",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Pengirim: ${permintaanSaksi[index]['pengirim']}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        "Keterangan: ${permintaanSaksi[index]['Keterangan']}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Tanggal",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "${permintaanSaksi[index]['tanggal']}",
-                          style: TextStyle(fontWeight: FontWeight.w400),
-                        ),
-                        SizedBox(height: 10),
-                        Divider(color: Colors.black, thickness: 2),
-                        SizedBox(height: 10),
-                        Text(
-                          "Konfirmasi",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "${permintaanSaksi[index]['konfirmasi']}",
-                          style: TextStyle(fontWeight: FontWeight.w400),
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+              child: FutureBuilder<List<Witness>>(
+                future: _service.getWitness(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Terjadi kesalahan'));
+                  }
+
+                  final data = snapshot.data!;
+
+                  return ListView.separated(
+                    itemCount: data.length,
+                    separatorBuilder: (_, __) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      final item = data[index];
+
+                      return ExpansionTile(
+                        leading: Text('${index + 1}'),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.grey,
-                              ),
-                              child: Text(
-                                "Tidak",
-                                style: TextStyle(color: Colors.white),
-                              ),
+                            Text(
+                              "Pengirim: ${item.nama}",
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(width: 8),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
-                              ),
-                              child: Text(
-                                "Ya",
-                                style: TextStyle(color: Colors.white),
+                            Text(
+                              "Keterangan: ${item.keterangan}",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
                               ),
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                        children: [Text("Tanggal"), Text(item.createdAt)],
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),

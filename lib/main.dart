@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:slicing_jurnalku/Pages/catatan.dart';
+import 'package:slicing_jurnalku/Pages/home.dart';
+import 'package:slicing_jurnalku/Pages/permintaansaksi.dart';
 import 'package:slicing_jurnalku/login.dart';
 
 void main() {
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: PermintaanSaksi(),
     );
   }
 }
