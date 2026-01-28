@@ -1,16 +1,39 @@
-# slicing_jurnalku
 
-A new Flutter project.
+## 🛠️ Built With
 
-## Getting Started
+- **Flutter**
+- **Dart**
+- Supports **Android, iOS, and Web**
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 📦 Requirements
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Before running this project, make sure you have installed:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter SDK
+- Git
+- Android Studio or VS Code
+- Android Emulator or a physical device
+
+Check your Flutter installation by running:
+```bash
+flutter doctor
+
+## Installation
+
+- Clone repositories
+    git clone https://github.com/MuhammadHaikal1138/slicing_jurnalku.git
+- Go to the project directory
+    cd slicing_jurnalku
+- Install Dependencies
+    flutter pub get
+
+
+- Running Project
+    Run on Emulator or Physical Device
+    flutter run
+    Run on Web (Chrome)
+    flutter run -d chrome
+    Build APK (Android)
+    flutter build apk

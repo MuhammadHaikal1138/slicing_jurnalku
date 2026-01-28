@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:slicing_jurnalku/model/attitude.dart';
+import 'package:slicing_jurnalku/services/attitude_services.dart';
 
 class CatatanSikap extends StatelessWidget {
   const CatatanSikap({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Future<List<Attitude>> futureAttitude = AttitudeService()
+        .getAttitude();
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -87,52 +92,113 @@ class CatatanSikap extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              _buildSummaryCard("Total Catatan", "0", Icons.note, Colors.blue),
-              const SizedBox(height: 15),
-              _buildSummaryCard(
-                "Dalam Perbaikan",
-                "0",
-                Icons.settings,
-                Colors.orange,
+              FutureBuilder<List<Attitude>>(
+                future: futureAttitude,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return _buildSummaryCard(
+                      "Total Catatan",
+                      "0",
+                      Icons.note,
+                      Colors.blue,
+                    );
+                  }
+
+                  final data = snapshot.data!;
+
+                  return Column(
+                    children: [
+                      _buildSummaryCard(
+                        "Total Catatan",
+                        "${data.length}",
+                        Icons.note,
+                        Colors.blue,
+                      ),
+                      const SizedBox(height: 15),
+                      _buildSummaryCard(
+                        "Dalam Perbaikan",
+                        "${data.where((e) => e.status == 'perbaikan').length}",
+                        Icons.settings,
+                        Colors.orange,
+                      ),
+                      const SizedBox(height: 15),
+                      _buildSummaryCard(
+                        "Sudah Dirubah",
+                        "${data.where((e) => e.status == 'dirubah').length}",
+                        Icons.check_circle,
+                        Colors.green,
+                      ),
+                    ],
+                  );
+                },
               ),
-              const SizedBox(height: 15),
-              _buildSummaryCard(
-                "Sudah Dirubah",
-                "0",
-                Icons.check_circle,
-                Colors.green,
-              ),
+
               const SizedBox(height: 30),
 
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: [
-                    ExpansionTile(
-                      tilePadding: const EdgeInsets.symmetric(horizontal: 16),
-                      childrenPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      title: const Text(
-                        "Kategori: Percobaan",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      // subtitle: const Text("Status: Percobaan"),
-                      children: [
-                        _buildDetailRow("Status:", "Percobaan"),
-                        _buildDetailRow("Catatan:", "Percobaan"),
-                        _buildDetailRow("Dilaporkan:", "Percobaan"),
-                        _buildDetailRow("Update Terakhir:", "Percobaan"),
-                        _buildDetailRow("aksi:", "Percobaan"),
-                        const SizedBox(height: 10),
-                      ],
-                    ),
-                  ],
-                ),
+              // ===============================
+              // 🔹 TAMBAHAN FUTURE BUILDER
+              // ===============================
+              FutureBuilder<List<Attitude>>(
+                future: futureAttitude,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (snapshot.hasError) {
+                    return Center(child: Text("Error: ${snapshot.error}"));
+                  }
+
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text("Tidak ada data"));
+                  }
+
+                  final data = snapshot.data!;
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      final attitude = data[index];
+
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: ExpansionTile(
+                          tilePadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          childrenPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          title: Text(
+                            "Kategori: ${attitude.kategori}",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          children: [
+                            _buildDetailRow("Status:", "${attitude.status}"),
+                            _buildDetailRow("Catatan:", "${attitude.catatan}"),
+                            _buildDetailRow(
+                              "Dilaporkan:",
+                              "${attitude.dilaporkan}",
+                            ),
+                            _buildDetailRow(
+                              "Update Terakhir:",
+                              "${attitude.updatedAt}",
+                            ),
+                            _buildDetailRow("aksi:", "Percobaan"),
+                            const SizedBox(height: 10),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
 
               const SizedBox(height: 50),
